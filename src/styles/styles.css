@@ -1,0 +1,26 @@
+body {
+  background: #0f1010 url("../../content/assets/60-lines.png") repeat;
+}
+
+.card {
+  background: rgb(43, 43, 43);
+  padding: 10px;
+  border: 1px solid #ff3018;
+  box-shadow: -1px 1px #ff3018, -2px 2px #ff3018, -3px 3px #ff3018,
+    -4px 4px #ff3018, -5px 5px #ff3018;
+}
+
+.toc {
+  position: fixed;
+  padding: 10px;
+  left: 0;
+  margin-left: 20px;
+  max-width: 350px;
+  min-height: 200px;
+}
+
+footer.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}

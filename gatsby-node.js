@@ -4,19 +4,14 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
   const result = await graphql(
     `
       {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
+        allMdx(sort: { fields: frontmatter___date, order: DESC }) {
           edges {
             node {
-              fields {
-                slug
-              }
+              slug
               frontmatter {
                 title
               }
@@ -32,17 +27,17 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Create blog posts pages.
-  const posts = result.data.allMarkdownRemark.edges
+  const mdxPosts = result.data.allMdx.edges
 
-  posts.forEach((post, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1].node
-    const next = index === 0 ? null : posts[index - 1].node
+  mdxPosts.forEach((post, index) => {
+    const previous = index === post.length - 1 ? null : post[index + 1]
+    const next = index === 0 ? null : post[index - 1]
 
     createPage({
-      path: post.node.fields.slug,
+      path: post.node.slug,
       component: blogPost,
       context: {
-        slug: post.node.fields.slug,
+        slug: post.node.slug,
         previous,
         next,
       },
@@ -53,7 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === `Mdx`) {
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,
