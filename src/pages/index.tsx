@@ -8,7 +8,7 @@ import { IndexPage } from "./__generated__/IndexPage"
 
 type BlogIndexProps = {
   data: IndexPage
-  location: unknown
+  location: string
 }
 
 const BlogIndex = ({ data, location }: BlogIndexProps): JSX.Element => {

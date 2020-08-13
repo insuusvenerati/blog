@@ -4,13 +4,20 @@ import React from "react"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Toc from "../components/toc"
 import { rhythm, scale } from "../utils/typography"
 import { BlogPostBySlug } from "./__generated__/BlogPostBySlug"
-import Toc from "../components/toc"
+
+type Node = {
+  slug: string
+  frontmatter: {
+    title: string
+  }
+}
 
 type BlogPostTemplateProps = {
   data: BlogPostBySlug
-  pageContext: unknown
+  pageContext: BlogPostBySlug
   location: unknown
 }
 
@@ -21,7 +28,7 @@ const BlogPostTemplate = ({
 }: BlogPostTemplateProps): JSX.Element => {
   const mdxPost = data.mdx
   const siteTitle = data.site.siteMetadata.title
-  const { previous, next } = pageContext
+  const { previous, next }: { previous: Node; next: Node } = pageContext
 
   return (
     <Layout location={location} title={siteTitle}>

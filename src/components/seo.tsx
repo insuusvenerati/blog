@@ -1,13 +1,23 @@
+import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
-import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
 import { SEOQuery } from "./__generated__/SEOQuery"
+
+type Meta = {
+  name:
+    | "description"
+    | "twitter:card"
+    | "twitter:creator"
+    | "twitter:title"
+    | "twitter:description"
+  content: string
+  property: "og:title" | "og:description" | "og:type"
+}
 
 type SEOProps = {
   description: string
   lang: string
-  meta: unknown
+  meta: Array<Meta>
   title: string
 }
 
@@ -70,22 +80,9 @@ const SEO = ({ description, lang, meta, title }: SEOProps): JSX.Element => {
           name: `twitter:description`,
           content: metaDescription,
         },
-      ].concat(meta)}
+      ]}
     />
   )
-}
-
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
 }
 
 export default SEO

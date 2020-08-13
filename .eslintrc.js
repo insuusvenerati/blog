@@ -17,7 +17,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 11,
+    ecmaVersion: 2018,
     sourceType: "module",
   },
   plugins: ["react", "@typescript-eslint"],
@@ -25,4 +25,18 @@ module.exports = {
     "react/prop-types": 0,
     "@typescript-eslint/restrict-template-expressions": 0,
   },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+  overrides: [
+    // Override some TypeScript rules just for .js files
+    {
+      files: ["*.js"],
+      rules: {
+        "@typescript-eslint/no-var-requires": "off", //
+      },
+    },
+  ],
 }

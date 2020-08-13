@@ -10,6 +10,8 @@ type PostProps = {
       date: Date
       description: string
     }
+    slug: string
+    excerpt: string
   }
   title: string
 }

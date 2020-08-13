@@ -5,8 +5,8 @@ import SEO from "../components/seo"
 import { NotFoundQuery } from "./__generated__/NotFoundQuery"
 
 type NotFoundPageProps = {
-  date: NotFoundQuery
-  location: unknown
+  data: NotFoundQuery
+  location: string
 }
 
 const NotFoundPage = ({ data, location }: NotFoundPageProps): JSX.Element => {

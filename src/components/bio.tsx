@@ -16,7 +16,7 @@ type MetaData = {
 const Bio = (): JSX.Element => {
   const data = useStaticQuery<BioQuery>(graphql`
     query BioQuery {
-      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+      avatar: file(absolutePath: { regex: "/profile-pic.jpeg/" }) {
         childImageSharp {
           fixed(width: 50, height: 50) {
             ...GatsbyImageSharpFixed
