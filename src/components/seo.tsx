@@ -3,25 +3,13 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { SEOQuery } from "./__generated__/SEOQuery"
 
-type Meta = {
-  name:
-    | "description"
-    | "twitter:card"
-    | "twitter:creator"
-    | "twitter:title"
-    | "twitter:description"
-  content: string
-  property: "og:title" | "og:description" | "og:type"
-}
-
 type SEOProps = {
   description: string
   lang: string
-  meta: Array<Meta>
   title: string
 }
 
-const SEO = ({ description, lang, meta, title }: SEOProps): JSX.Element => {
+const SEO = ({ description, lang, title }: SEOProps): JSX.Element => {
   const { site } = useStaticQuery<SEOQuery>(
     graphql`
       query SEOQuery {
