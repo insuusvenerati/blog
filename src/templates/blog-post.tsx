@@ -13,6 +13,7 @@ type Node = {
   frontmatter: {
     title: string
   }
+  timeToRead: number
 }
 
 type BlogPostTemplateProps = {
@@ -54,7 +55,16 @@ const BlogPostTemplate = ({
               marginBottom: rhythm(1),
             }}
           >
-            {mdxPost.frontmatter.title}
+            {mdxPost.frontmatter.description || mdxPost.excerpt}
+          </p>
+          <p
+            style={{
+              ...scale(-1 / 5),
+              display: `block`,
+              marginBottom: rhythm(1),
+            }}
+          >
+            {mdxPost.timeToRead} minutes
           </p>
         </header>
 
