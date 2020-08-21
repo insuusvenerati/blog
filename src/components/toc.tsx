@@ -18,6 +18,7 @@ const Toc = ({ headings }: TocProps): JSX.Element => {
       .replace(/[^\w-]+/g, "")
   return (
     <div className="card toc">
+      <h2 style={{ marginTop: 0 }}>Table of Contents</h2>
       <ul>
         {headings
           ? headings.map(heading => (
